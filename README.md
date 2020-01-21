@@ -1,3 +1,7 @@
+![build status](https://api.travis-ci.org/alexpogue/habits.svg?branch=master)
+![codecov](https://codecov.io/gh/alexpogue/habits/branch/master/graph/badge.svg)
+![MIT-licensed](https://img.shields.io/github/license/alexpogue/habits)
+
 # Habits
 
 Habits is a habit tracker. Add your habit goals and enter habit entries for
