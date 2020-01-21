@@ -10,7 +10,7 @@ install:
 - cd server && pipenv install --dev
 
 script:
-- pytest --cov-report=term --cov=habits --cov-fail-under=100 tests/
+- pytest --flake8 --cov-report=term --cov-fail-under=100 --cov=habits tests/
 
 after_success:
 - codecov
