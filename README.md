@@ -1,6 +1,6 @@
-![build status](https://api.travis-ci.org/alexpogue/habits.svg?branch=master)
-![codecov](https://codecov.io/gh/alexpogue/habits/branch/master/graph/badge.svg)
-![MIT-licensed](https://img.shields.io/github/license/alexpogue/habits)
+[![Build Status](https://travis-ci.org/alexpogue/habits.svg?branch=master)](https://travis-ci.org/alexpogue/habits)
+[![Code Coverage](https://codecov.io/gh/alexpogue/habits/branch/master/graph/badge.svg)](https://codecov.io/github/alexpogue/habits)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Habits
 
