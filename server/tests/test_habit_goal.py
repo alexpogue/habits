@@ -68,7 +68,7 @@ def test_get_list_one_elem(one_in_db_client):
 def test_get_item_one_elem(one_in_db_client):
     """Test getting the one item of a db with one item"""
 
-    expected = {'id': 1, 'name': 'item1'}
+    expected = {'data': {'id': 1, 'name': 'item1'}}
     rv = one_in_db_client.get('/habit_goal/1')
     assert_200_json_response(rv, expected)
 
@@ -87,7 +87,7 @@ def test_get_item_after_update(one_in_db_client):
     rv = one_in_db_client.put('/habit_goal/1', json={'name': 'updated'})
     assert_200_json_response(rv, expected_update_response)
 
-    expected_get_response = {'id': 1, 'name': 'updated'}
+    expected_get_response = {'data': {'id': 1, 'name': 'updated'}}
     rv = one_in_db_client.get('/habit_goal/1')
     assert_200_json_response(rv, expected_get_response)
 

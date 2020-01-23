@@ -15,7 +15,8 @@ def list_habit_goal():
 
 @habit_goal_blueprint.route('/<int:habit_goal_id>')
 def get_habit_goal(habit_goal_id):
-    return get_by_id(HabitGoal, habit_goal_id, habit_goal_schema)
+    habit_goal = get_by_id(HabitGoal, habit_goal_id, habit_goal_schema)
+    return jsonify({'data': habit_goal})
 
 
 @habit_goal_blueprint.route('/', methods=['POST'])
