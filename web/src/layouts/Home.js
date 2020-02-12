@@ -8,9 +8,14 @@ const Home = () => {
     if (habits) {
       return;
     }
-    // Step 1: Utilize axios to fetch habit-goals from the api
-    // Step 2: fetched data set to the local state using useState hook
-    getHabitGoals().then(setHabits);
+    //Utilize axios to fetch habit-goals from the api
+    //Fetch habit data and then set to the local state using useState hook
+    getHabitGoals()
+      .then(setHabits)
+      .catch(err => {
+        console.log(err);
+      });
+    //Compare to the current habits state, if there is no difference end.
   }, [habits]);
 
   // Step 3: Helper function for conditionally rendered Home.js
@@ -26,7 +31,7 @@ const Home = () => {
         {habit.name}
       </li>
     ));
-  }
+  };
   // The Home.js return statement, which renders the renderContent helper
   return <div className="ui divided list">{renderContent()}</div>;
 };
