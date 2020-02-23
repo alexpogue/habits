@@ -4,16 +4,16 @@ from .base import ma
 from marshmallow import fields
 
 
-class HabitGoal(db.Model):
+class Goal(db.Model):
     __tablename__ = 'habit_goal'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), nullable=False)
 
 
-class HabitGoalSchema(ma.Schema):
+class GoalSchema(ma.Schema):
     id = fields.Integer()
     name = fields.String()
 
 
-habit_goal_schema = HabitGoalSchema()
-habit_goals_schema = HabitGoalSchema(many=True)
+goal_schema = GoalSchema()
+goals_schema = GoalSchema(many=True)
