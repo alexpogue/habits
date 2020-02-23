@@ -10,7 +10,10 @@ habit_goal_blueprint = Blueprint('habit_goal_blueprint', __name__)
 @habit_goal_blueprint.route('/')
 def list_habit_goal():
     all_habit_goals = HabitGoal.query.all()
-    return jsonify({'data': habit_goals_schema.dump(all_habit_goals)})
+    
+    response = jsonify({'data': habit_goals_schema.dump(all_habit_goals)})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @habit_goal_blueprint.route('/<int:habit_goal_id>')
