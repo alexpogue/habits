@@ -1,19 +1,19 @@
 from flask import Blueprint, request, abort, jsonify
+from flask_cors import CORS
 from ..models.habit_goal import HabitGoal
 from ..models.habit_goal import habit_goals_schema, habit_goal_schema
 from ..models.base import db
 from .util import get_by_id, ensure_json_or_die
 
 habit_goal_blueprint = Blueprint('habit_goal_blueprint', __name__)
+CORS(habit_goal_blueprint)
 
 
 @habit_goal_blueprint.route('/')
 def list_habit_goal():
     all_habit_goals = HabitGoal.query.all()
-    
-    response = jsonify({'data': habit_goals_schema.dump(all_habit_goals)})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return jsonify({'data': habit_goals_schema.dump(all_habit_goals)})
+
 
 
 @habit_goal_blueprint.route('/<int:habit_goal_id>')
@@ -33,6 +33,7 @@ def new_habit_goal():
     db.session.add(habit_goal)
     db.session.commit()
     return jsonify({'data': 'success'})
+
 
 
 @habit_goal_blueprint.route('/<int:habit_goal_id>', methods=['PUT'])
