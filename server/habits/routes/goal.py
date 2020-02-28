@@ -6,6 +6,7 @@ from ..models.base import db
 from .util import get_by_id, ensure_json_or_die
 
 goal_blueprint = Blueprint('goal_blueprint', __name__)
+# Allows CORS on all goal_blueprint routes, functionality comes from flask_cors.
 CORS(goal_blueprint)
 
 @goal_blueprint.route('/')

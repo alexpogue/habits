@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 
 const Form = props => {
-  //
+  // component state
   const [fieldInfo, setFieldInfo] = useState([]);
 
 

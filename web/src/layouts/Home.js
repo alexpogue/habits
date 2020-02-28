@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getAllHabitGoals, postHabitGoal } from "../api/habitAPI/habitApiGET";
+import { getAllHabitGoals, postHabitGoal } from "../api/habitAPI/goalApiGet";
 import Form from "../components/Form";
 
 const Home = () => {
   const [habits, setHabits] = useState(null);
 
+  ///UseEffect condition [], invokes only once on initial render.
   useEffect(() => {
     if (habits) {
       return;
     }
-    //Utilize axios to fetch habit-goals from the api
-    //Fetch habit data and then set to the local state using useState hook
     getAllHabitGoals()
       .then(values => {
         setHabits(values);
@@ -18,11 +17,10 @@ const Home = () => {
       .catch(err => {
         console.log(err);
       });
-    //Compare to the current habits state, if there is no difference end.
   }, []);
 
+  //useEffect condition [formGoal], invokes whenever the formGoal state changes. 
   const [formGoal, setFormGoal] = useState(null);
-
   useEffect(() => {
     if (formGoal) {
       postHabitGoal(formGoal)
@@ -35,13 +33,14 @@ const Home = () => {
     }
   }, [formGoal]);
 
+  //Helper function that invokes setFormGoal with passed data.
   const handleFormSubmit = formData => {
     setFormGoal(formData);
   };
 
-  //Helper function for conditionally rendered Home.js
+  //Helper function for conditionally rendering Home.js
   const renderContent = () => {
-    //Case A: If there is no state, return loading..
+    //Case A: If there is no state/no habits, return loading..
     if (!habits) {
       return <div>Loading...</div>;
     }
