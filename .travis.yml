@@ -1,16 +1,18 @@
-language: python
 matrix:
   include:
-  - python: 3.7.1
-  dist: xenial
-  sudo: true
+    language: python
+    matrix:
+      include:
+      - python: 3.7.1
+      dist: xenial
+      sudo: true
+    
+    install:
+    - pip install pipenv
+    - cd server && pipenv install --dev
+    
+    script:
+    - pytest --flake8 --cov-report=term --cov-fail-under=100 --cov=habits tests/
 
-install:
-- pip install pipenv
-- cd server && pipenv install --dev
-
-script:
-- pytest --flake8 --cov-report=term --cov-fail-under=100 --cov=habits tests/
-
-after_success:
-- codecov
+    after_success:
+    - codecov
