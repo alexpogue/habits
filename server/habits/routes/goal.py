@@ -1,20 +1,19 @@
 from flask import Blueprint, request, abort, jsonify
+from flask_cors import CORS
 from ..models.goal import Goal
 from ..models.goal import goals_schema, goal_schema
 from ..models.base import db
 from .util import get_by_id, ensure_json_or_die
 
 goal_blueprint = Blueprint('goal_blueprint', __name__)
-
+# Allows CORS on all goal_blueprint routes, functionality comes from flask_cors.
+CORS(goal_blueprint)
 
 @goal_blueprint.route('/')
 def list_goal():
     all_goals = Goal.query.all()
-
-    response = jsonify({'data': goals_schema.dump(all_goals)})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
-
+    return jsonify({'data': goals_schema.dump(all_goals)})
+ 
 
 @goal_blueprint.route('/<int:goal_id>')
 def get_goal(goal_id):
