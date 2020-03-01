@@ -1,6 +1,6 @@
 matrix:
   include:
-    language: python
+  - language: python
     matrix:
       include:
       - python: 3.7.1
@@ -13,6 +13,21 @@ matrix:
     
     script:
     - pytest --flake8 --cov-report=term --cov-fail-under=100 --cov=habits tests/
+
+    after_success:
+    - codecov
+
+  - language: node_js
+
+    install:
+    - npm install -g codecov
+    - npm install
+
+    before_script:
+    - cd web
+
+    script:
+    - npm test -- --coverage
 
     after_success:
     - codecov
