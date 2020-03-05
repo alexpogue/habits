@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { getAllHabitGoals, postHabitGoal } from "../api/habitAPI/goalApiGet";
+import React, { useState, useEffect, useContext } from "react";
+import {GoalContext} from "../context/GoalContext";
+import GoalModal from "../components/GoalModal"
 import Form from "../components/Form";
-
+import {Link} from 'react-router-dom';
+import * as goalApi from '../api/habitAPI/goalApiGet';
+import history from "../history";
 const Home = () => {
-  const [habits, setHabits] = useState(null);
+
+//  ---------State-----------
+
+  const {goals, setGoals} = useContext(GoalContext);
+  const [formGoal, setFormGoal] = useState(null);
+
+//  ---------Use Effects-----------
 
   ///UseEffect condition [], invokes only once on initial render.
   useEffect(() => {
-    if (habits) {
+    if (goals) {
       return;
     }
-    getAllHabitGoals()
-      .then(values => {
-        setHabits(values);
+    goalApi.getAllGoals()
+      .then(allGoals => {
+        setGoals(allGoals);
       })
       .catch(err => {
         console.log(err);
@@ -20,12 +29,11 @@ const Home = () => {
   }, []);
 
   //useEffect condition [formGoal], invokes whenever the formGoal state changes. 
-  const [formGoal, setFormGoal] = useState(null);
   useEffect(() => {
     if (formGoal) {
-      postHabitGoal(formGoal)
+      goalApi.postGoal(formGoal)
         .then(newGoalArray => {
-          setHabits(newGoalArray);
+          setGoals(newGoalArray);
         })
         .catch(err => {
           console.log(err);
@@ -33,30 +41,41 @@ const Home = () => {
     }
   }, [formGoal]);
 
-  //Helper function that invokes setFormGoal with passed data.
+  //  ---------Helper Methods-----------
+
+  //Invokes setFormGoal with passed data.
   const handleFormSubmit = formData => {
     setFormGoal(formData);
   };
 
-  //Helper function for conditionally rendering Home.js
+  //Conditionally rendering for Home.js
   const renderContent = () => {
     //Case A: If there is no state/no habits, return loading..
-    if (!habits) {
+    if (!goals) {
       return <div>Loading...</div>;
     }
     //Case B: If there is state, map over the habit objects creating a habit
     // component for each.
-    return habits.map(habit => (
-      <li className="item" key={habit.id}>
-        <a href={"/goal/" + habit.id}>{habit.name}</a>
+    return goals.map(goal => (
+      <li className="item" key={goal.id}>
+        <Link to={`/goal/${goal.id}`}>{goal.name}</Link>
       </li>
     ));
   };
-  // The Home.js return statement, which renders the renderContent helper
+
+//  ---------Home Component Return-----------
+
   return (
     <div className="ui divided list">
       {renderContent()}
-      <Form onSubmit={handleFormSubmit} />
+      <GoalModal 
+        trigger={<button className="ui button green right floated">Add Goal</button>}
+        header="Add a new goal."
+        descriptionText="Add a new goal to your goal list!"
+        actions={
+          <Form buttonClass="ui button green" buttonTitle="Add" placeholder="Add Goal" onSubmit={handleFormSubmit} />
+        }
+      />
     </div>
   );
 };
