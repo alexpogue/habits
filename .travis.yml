@@ -19,6 +19,9 @@ matrix:
 
   - language: node_js
 
+    before_install:
+    - cd web
+
     install:
     - npm install -g codecov
     - npm install
