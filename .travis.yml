@@ -28,9 +28,6 @@ matrix:
     - npm install -g codecov
     - npm install
 
-    before_script:
-    - cd web
-
     script:
     - npm test -- --coverage
 
