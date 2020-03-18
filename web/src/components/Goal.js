@@ -71,7 +71,7 @@ const Goal = () => {
         <div>
           <GoalModal
             trigger={<button className="ui button yellow small" > Edit Goal</button> }
-            header="Edit Goal"
+            header={`Delete Goal: ${currentGoal.name}`}
             descriptionText="Change the name of your goal within the goal list! No other details about your goal will change"
             actions={<Form buttonClass="ui button yellow small" buttonTitle="Accept Changes" placeholder="New goal name" onSubmit={handleFormSubmit}/>}
           />
@@ -81,7 +81,7 @@ const Goal = () => {
                 Delete Goal
               </button>
             }
-            header="Delete Goal"
+            header={`Delete Goal: ${currentGoal.name}`}
             descriptionHeader="Are you sure?"
             descriptionText="This action is permanent, there is no way to recover a goal once deleted."
             actions={
