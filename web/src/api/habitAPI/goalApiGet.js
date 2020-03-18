@@ -2,13 +2,13 @@ import habit from "./instance";
 
 // Gets all goals from the goal api.
 export const getAllHabitGoals = async () => {
-  const result = await habit.get("goal/");
+  const result = await habit("goal/");
   return result.data.data;
 };
 
 // Gets a goal with matching goalId if invoked with a goalId.
 export const getHabitGoal = async goalId => {
-  const result = await habit.get("goal/" + goalId);
+  const result = await habit("goal/" + goalId);
   return result.data.data;
 };
 
