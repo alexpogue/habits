@@ -18,13 +18,21 @@ export const postGoal = async name => {
   const newGoalArray = await goal("goal/");
   return newGoalArray.data.data;
 };
+<<<<<<< HEAD
 // Updates/puts a single goal if invoked with a new name, and the id of goal you wish to change.
+=======
+
+>>>>>>> f6a9fd388821161b596f9780f9172817db69a372
 export const putGoal = async (newName, id) => {
   await goal.put(`goal/${id}`, { name: newName });
   const newGoalArray = await goal("goal/");
   return newGoalArray.data.data;
 };
+<<<<<<< HEAD
 //Deletes a goal given a specific Id from the database.
+=======
+
+>>>>>>> f6a9fd388821161b596f9780f9172817db69a372
 export const deleteGoal = async (id) => {
   await goal.delete(`goal/${id}`);
   const newGoalArray = await goal("goal/");
