@@ -1,7 +1,7 @@
 'use strict';
 
 import nock from 'nock';
-import { getHabitGoal, getAllHabitGoals, postHabitGoal } from "./goalApiGet";
+import { getGoal, getAllGoals, postGoal } from "./goalApiGet";
 
 describe('fetchGoals', () => {
     const MOCKED_GOALS = [
@@ -22,7 +22,7 @@ describe('fetchGoals', () => {
             .get('/goal/')
             .reply(200, {'data': MOCKED_GOALS}, CORS_FIX_HEADERS);
 
-        getAllHabitGoals()
+        getAllGoals()
             .then(values => {
                 expect(values).toEqual(MOCKED_GOALS);
                 scope.done();
@@ -35,7 +35,7 @@ describe('fetchGoals', () => {
             .get('/goal/1')
             .reply(200, {'data': MOCKED_GOALS[0]}, CORS_FIX_HEADERS);
 
-        getHabitGoal(1)
+        getGoal(1)
             .then(value => {
                 expect(value).toEqual(MOCKED_GOALS[0]);
                 scope.done();
@@ -53,7 +53,7 @@ describe('fetchGoals', () => {
             .get('/goal/')
             .reply(200, {'data': NEW_GOALS_LIST}, CORS_FIX_HEADERS);
 
-        postHabitGoal(MOCKED_NEW_GOAL)
+        postGoal(MOCKED_NEW_GOAL)
             .then(value => {
                 expect(value).toEqual(NEW_GOALS_LIST);
                 scope.done();
