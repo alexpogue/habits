@@ -3,7 +3,7 @@ import Form from "../components/Form";
 import history from "../history";
 import { useParams } from "react-router-dom";
 import { GoalContext } from "../context/GoalContext";
-import * as goalApi from "../api/habitAPI/goalApiGet";
+import * as goalApi from "../api/habitAPI/goal";
 import GoalModal from "../components/GoalModal";
 
 const Goal = () => {

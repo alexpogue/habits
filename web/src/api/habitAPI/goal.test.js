@@ -1,7 +1,7 @@
 'use strict';
 
 import nock from 'nock';
-import { getGoal, getAllGoals, postGoal } from "./goalApiGet";
+import { getGoal, getAllGoals, postGoal } from "./goal";
 
 describe('fetchGoals', () => {
     const MOCKED_GOALS = [

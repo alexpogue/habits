@@ -1,4 +1,4 @@
-import goal from "./instance";
+import goal from "./goalInstance";
 
 // Gets all goals from the goal api.
 export const getAllGoals = async () => {

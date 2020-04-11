@@ -3,7 +3,7 @@ import {GoalContext} from "../context/GoalContext";
 import GoalModal from "../components/GoalModal"
 import Form from "../components/Form";
 import {Link} from 'react-router-dom';
-import * as goalApi from '../api/habitAPI/goalApiGet';
+import * as goalApi from '../api/habitAPI/goal';
 import history from "../history";
 const Home = () => {
 
