@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import {GoalContext} from "../context/GoalContext";
 import GoalModal from "../components/GoalModal"
+import HabitsApi from "../api/instance";
 import Form from "../components/Form";
 import {Link} from 'react-router-dom';
-import * as goalApi from '../api/habitAPI/goalApiGet';
 import history from "../history";
 const Home = () => {
 
@@ -19,7 +19,7 @@ const Home = () => {
     if (goals) {
       return;
     }
-    goalApi.getAllGoals()
+    HabitsApi.getAllGoals()
       .then(allGoals => {
         setGoals(allGoals);
       })
@@ -31,7 +31,7 @@ const Home = () => {
   //useEffect condition [formGoal], invokes whenever the formGoal state changes. 
   useEffect(() => {
     if (formGoal) {
-      goalApi.postGoal(formGoal)
+      HabitsApi.postGoal(formGoal)
         .then(newGoalArray => {
           setGoals(newGoalArray);
         })
