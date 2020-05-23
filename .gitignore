@@ -3,7 +3,7 @@
 server/instance
 server/.coverage
 mobile/node_modules/**/*
-.expo/*
+mobile/.expo
 npm-debug.*
 *.jks
 *.p8
