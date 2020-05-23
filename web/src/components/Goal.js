@@ -3,7 +3,7 @@ import Form from "../components/Form";
 import history from "../history";
 import { useParams } from "react-router-dom";
 import { GoalContext } from "../context/GoalContext";
-import * as goalApi from "../api/habitAPI/goalApiGet";
+import HabitsApi from "../api/instance";
 import GoalModal from "../components/GoalModal";
 
 const Goal = () => {
@@ -19,7 +19,7 @@ const Goal = () => {
     if (goals) {
       setCurrentGoal(goals.find(goal => goal.id == id));
     } else {
-      goalApi
+      HabitsApi
         .getAllGoals()
         .then(allGoals => {
           setGoals(allGoals);
@@ -32,7 +32,7 @@ const Goal = () => {
 
   useEffect(() => {
     if (formGoal) {
-      goalApi
+      HabitsApi
         .putGoal(formGoal, id)
         .then(updatedGoals => {
           setGoals(updatedGoals);
@@ -49,7 +49,7 @@ const Goal = () => {
   };
 
   const handleButtonClick = () => {
-    goalApi.deleteGoal(currentGoal.id).then(updatedGoals => {
+    HabitsApi.deleteGoal(currentGoal.id).then(updatedGoals => {
       setGoals(updatedGoals);
       history.push("/");
     });
