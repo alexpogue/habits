@@ -5,11 +5,15 @@ name = "pypi"
 
 [packages]
 flask = "*"
+flask-dance = "*"
+flask-login = "*"
 flask-cors = "*"
 flask-sqlalchemy = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+sqlalchemy_utils = "*"
 gunicorn = "*"
+blinker = "*"
 
 [requires]
 python_version = "3.7.1"

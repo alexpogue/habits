@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <title>Flask-Dance Multi-User SQLAlchemy</title>
+</head>
+<body>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flash">
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% if current_user.is_authenticated %}
+You are logged in via Facebook as {{ current_user.email }}
+  <a href="{{ url_for("user_blueprint.logout") }}">Log out</a>
+{% else %}
+  You are not logged in.
+  <ul>
+      <li><a href="{{ url_for("facebook.login") }}"><img src="/static/facebook.png" /> Log in</a></li>
+  </ul>
+{% endif %}
+</body>
