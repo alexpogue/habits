@@ -4,7 +4,6 @@ import GoalModal from "../components/GoalModal"
 import HabitsApi from "../api/instance";
 import Form from "../components/Form";
 import {Link} from 'react-router-dom';
-import history from "../history";
 const Home = () => {
 
 //  ---------State-----------

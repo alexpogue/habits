@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import Form from "../components/Form";
-import history from "../history";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GoalContext } from "../context/GoalContext";
 import HabitsApi from "../api/instance";
 import GoalModal from "../components/GoalModal";
 
 const Goal = () => {
+  let navigate = useNavigate();
 
 //  ---------State-----------
   const { id } = useParams();
@@ -51,12 +51,12 @@ const Goal = () => {
   const handleButtonClick = () => {
     HabitsApi.deleteGoal(currentGoal.id).then(updatedGoals => {
       setGoals(updatedGoals);
-      history.push("/");
+      navigate("/");
     });
   };
 
   const handleClose = () => {
-    history.push("/");
+    navigate("/");
   };
 
   const renderContent = () => {
